@@ -1,3 +1,6 @@
+![Bergkapelle sync](https://healthchecks.io/b/2/d8b1736e-8bd3-4b75-8a14-16984e3d5637.svg)
+![Bergkapelle restic](https://healthchecks.io/b/2/64ac11c2-0699-4626-8e1a-94c9ce560a9c.svg)
+
 # Bergkapelle Nextcloud Backup configuration
 
 This is a bare minimum config to build a NixOS Raspberry Pi SD card image which is used inside a Raspberry Pi to backup a SaaS Nextcloud instance.
