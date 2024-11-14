@@ -15,7 +15,7 @@ Hardware setup:
 * The hard drive is formatted in `ext4` and may not be readable using a Windows machine. Just in case I leave this world and you need to access these backups, use a Linux machine to read it.
 * The hard drive contains two directories:
     * `synced`: This directory always contains the latest files from the Nextcloud instance. It should be synced every hour.
-    * `restic`: This directory contains a [restic](https://restic.net/) repository. Restic is a documentation software which supports incremental backups and deduplication. Using the restic software you should be able to jump back to the file structure of the Nextcloud from the latest
+    * `restic`: This directory contains a [restic](https://restic.net/) repository. Restic is a backup tool which supports incremental backups and deduplication. Using the restic software you should be able to jump back to the file structure of the Nextcloud from the latest
         * 48 hours
         * 7 days
         * 4 weeks
