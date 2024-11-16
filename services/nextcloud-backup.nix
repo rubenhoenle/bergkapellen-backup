@@ -11,8 +11,7 @@ let
 
       # nextcloud sync
       "mkdir -p ${syncDir}"
-      "mkdir -p ${syncDir}/Briefkasten"
-      "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Briefkasten ${syncDir}/Briefkasten https://cloud.shw-bergkapelle.de"
+      "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path / ${syncDir} https://cloud.shw-bergkapelle.de"
 
       # monitoring exit signal
       "${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 https://hc-ping.com/$(cat ${config.age.secrets.healthchecksIoUuid.path})/bk-nc-backup-sync/$?"
