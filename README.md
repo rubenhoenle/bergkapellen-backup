@@ -31,7 +31,7 @@ nixos-rebuild switch --target-host root@bergkapellen-backup --flake ".#raspberry
 ## Helpful commands
 
 ```bash
-# starting the sync job manually
+# starting the sync job manually (should start the restic backup job automatically afterwards)
 systemctl start nc-backup
 
 # view status of the sync job

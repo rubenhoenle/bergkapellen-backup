@@ -41,13 +41,27 @@ in
 
   /* ------------------------------------------------------------------------------------- */
 
-  systemd.services.nc-backup = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "nc-backup";
-      Group = "nc-backup";
-      ExecStart = "${pkgs.bash}/bin/bash ${nextcloudSyncScript}";
+  /* nextcloud sync to pull latest file structure */
+  systemd = {
+    services.nc-backup = {
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        User = "nc-backup";
+        Group = "nc-backup";
+        ExecStart = "${pkgs.bash}/bin/bash ${nextcloudSyncScript}";
+      };
+      /* run the restic backup job afterwards */
+      onSuccess = [ "restic-backups-nextcloud.service" ];
+      onFailure = [ "restic-backups-nextcloud.service" ];
+    };
+    timers.nc-backup = {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "nc-backup.service" ];
+      timerConfig = {
+        OnCalendar = "hourly";
+        Persistent = true;
+      };
     };
   };
 
@@ -70,7 +84,6 @@ in
       "--keep-yearly 10"
     ];
     extraBackupArgs = [ "--exclude-caches" ];
-    # TODO: add timer
     timerConfig = null;
   };
   /* monitoring for restic backup */
@@ -88,7 +101,7 @@ in
     {
       serviceConfig = {
         Type = "oneshot";
-        User = "root";
+        User = "nc-backup";
         ExecStart = "${pkgs.bash}/bin/bash ${script}";
       };
     };
