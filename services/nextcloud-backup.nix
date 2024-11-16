@@ -36,7 +36,6 @@ in
   fileSystems."${mntPath}" = {
     device = "/dev/disk/by-uuid/65649b90-f98d-4ebe-b95c-6a6ea36be6c4";
     fsType = "ext4";
-    options = [ "uid=999,gid=999,forceuid,forcegid" ];
   };
 
   /* ------------------------------------------------------------------------------------- */
