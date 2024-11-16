@@ -1,6 +1,6 @@
 {
   age = {
-    identityPaths = [ "/home/ruben/.ssh/agenix/bergkapellen-backup/id_ed25519" ];
+    identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
     secrets.healthchecksIoUuid = {
       file = ../secrets/healthchecks-io-uuid.age;

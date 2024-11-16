@@ -22,6 +22,28 @@ Hardware setup:
         * 12 months
         * 10 years
 
+## Rebuilding
+
+```bash
+nixos-rebuild switch --target-host root@bergkapellen-backup --flake ".#raspberry-pi_4"
+```
+
+## Helpful commands
+
+```bash
+# starting the sync job manually
+systemctl start nc-backup
+
+# view status of the sync job
+systemctl status nc-backup
+
+# starting the restic job manually
+systemctl start restic-backups-nextcloud
+
+# view status of the restic job
+systemctl status restic-backups-nextcloud
+```
+
 ## Building the SD card image for a new setup
 
 > [!NOTE]

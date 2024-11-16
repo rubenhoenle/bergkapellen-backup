@@ -11,6 +11,7 @@ let
 
       # nextcloud sync
       "mkdir -p ${syncDir}"
+      "mkdir -p ${syncDir}/Briefkasten"
       "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Briefkasten ${syncDir}/Briefkasten https://cloud.shw-bergkapelle.de"
 
       # monitoring exit signal
@@ -60,7 +61,7 @@ in
     passwordFile = "${pkgs.writeText "restic-password-file" "Schlagzeug"}";
     repository = resticDir;
     paths = [ syncDir ];
-    backupPrepareCommand = ''${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 https://hc-ping.com/$(cat ${config.age.secrets.healthchecksIoUuid.path})/bk-nc-backup-restic/''${MONITOR_EXIT_STATUS}'';
+    backupPrepareCommand = "${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 https://hc-ping.com/$(cat ${config.age.secrets.healthchecksIoUuid.path})/bk-nc-backup-restic/start";
     pruneOpts = [
       "--keep-hourly 48"
       "--keep-daily 7"
